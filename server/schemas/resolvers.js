@@ -32,13 +32,13 @@ const resolvers = {
       return { user, token };
     },
 
-    saveBook: async (parent, { authors, description, title, bookId, image, link, }) => {
-      const savedBooks = await User.findOneAndUpdate(
-        {}
-      )
+    // saveBook: async (parent, { authors, description, title, bookId, image, link, }) => {
+    //   const savedBooks = await User.findOneAndUpdate(
+    //     {}
+    //   )
 
-      return { savedBooks, token };
-    },
+    //   return { savedBooks, token };
+    // },
 
 
   }
