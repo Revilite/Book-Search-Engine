@@ -31,17 +31,37 @@ const resolvers = {
 
       return { user, token };
     },
+    saveBook: async (parent, { user, body }, context) => {
+      console.log(user, body);
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedBooks: body } },
+        { new: true, runValidators: true }
+      );
+      const token = signToken(updatedUser);
 
-    // saveBook: async (parent, { authors, description, title, bookId, image, link, }) => {
-    //   const savedBooks = await User.findOneAndUpdate(
-    //     {}
-    //   )
+      return { updatedUser, token };
+    },
+    removeBook: async (parent, { user, params }, context) => {
+      console.log(user, params);
 
-    //   return { savedBooks, token };
-    // },
+      const updatedUser = await User.findOneandUpdate(
+        {_id: user._id},
+        {$pull: {savedBooks: { bookId: params.bookId} } },
+        { new: true }
+      );
 
+      if (!updatedUser) {
+        console.log("Could not find user with this id!");
+      }
+
+      const token = signToken(updatedUser);
+
+      return { token, updatedUser };
+    }
 
   }
+
 }
 
 
