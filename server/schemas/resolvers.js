@@ -1,21 +1,21 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Book } = require("../models");
+const { User } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     me: async () => {
-      return User.find();
+      return User.findOne();
     }
   },
   Mutation: {
-    login: async (parent, { email, password }) => {
-      const user = User.findOne({ email });
+    login: async (parent, args, context) => {
+      const user = User.findOne({ email: args.email });
 
       if (!user) {
         throw new AuthenticationError("Incorrect email or password!");
       }
-      const correctPassword = await user.isCorrectPassword(password);
+      const correctPassword = await user.isCorrectPassword(args.password);
 
       if (correctPassword) {
         throw new AuthenticationError("Incorrect email or password!");
@@ -31,33 +31,30 @@ const resolvers = {
 
       return { user, token };
     },
-    saveBook: async (parent, { user, body }, context) => {
-      console.log(user, body);
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: user._id },
-        { $addToSet: { savedBooks: body } },
+    saveBook: async (parent, args, context) => {
+      console.log(args);
+      const saveBooks = await User.findByIdAndUpdate(
+        args._id,
+        { $addToSet: { savedBooks: {description: args.description, title: args.title, bookId: args.bookId, authors: args.authors, image: args.image, link: args.link} } },
         { new: true, runValidators: true }
-      );
-      const token = signToken(updatedUser);
+      )
 
-      return { updatedUser, token };
+      return { saveBooks };
     },
-    removeBook: async (parent, { user, params }, context) => {
-      console.log(user, params);
+    removeBook: async (parent, args, context) => {
+      console.log(args);
 
-      const updatedUser = await User.findOneandUpdate(
-        {_id: user._id},
-        {$pull: {savedBooks: { bookId: params.bookId} } },
+      const updatedUser = await User.findByIdAndUpdate(
+        args.bookId,
+        { $pull: { savedBooks: { bookId: args.bookId } } },
         { new: true }
-      );
+      )
 
       if (!updatedUser) {
         console.log("Could not find user with this id!");
       }
 
-      const token = signToken(updatedUser);
-
-      return { token, updatedUser };
+      return { updatedUser };
     }
 
   }
