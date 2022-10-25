@@ -10,7 +10,7 @@ const resolvers = {
   },
   Mutation: {
     login: async (parent, args, context) => {
-      const user = User.findOne({ email: args.email });
+      const user = await User.findOne({ email: args.email });
 
       if (!user) {
         throw new AuthenticationError("Incorrect email or password!");
