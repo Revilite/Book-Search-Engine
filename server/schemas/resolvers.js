@@ -33,11 +33,14 @@ const resolvers = {
     },
     saveBook: async (parent, args, context) => {
       console.log(args);
+      
       const saveBooks = await User.findByIdAndUpdate(
         args._id,
-        { $addToSet: { savedBooks: {description: args.description, title: args.title, bookId: args.bookId, authors: args.authors, image: args.image, link: args.link} } },
-        { new: true, runValidators: true }
-      )
+        { $addToSet: { savedBooks: args } },
+        { new: true,  runValidators: true}
+      );
+
+      console.log(saveBooks);
 
       return { saveBooks };
     },
@@ -45,7 +48,7 @@ const resolvers = {
       console.log(args);
 
       const updatedUser = await User.findByIdAndUpdate(
-        args.bookId,
+        args._id,
         { $pull: { savedBooks: { bookId: args.bookId } } },
         { new: true }
       )
