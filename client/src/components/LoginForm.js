@@ -31,7 +31,8 @@ const LoginForm = () => {
         { variables: { ...userFormData } }
       )
 
-      console.log(data);
+      console.log( data );
+      return data;
     } catch (err) {
       console.error(err);
       setShowAlert(true);
