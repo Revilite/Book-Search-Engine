@@ -30,6 +30,7 @@ module.exports = {
     }
 
     // send to next endpoint
+    console.log(`${req} this is context`);
     return req;
   },
 
