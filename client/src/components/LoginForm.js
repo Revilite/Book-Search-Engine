@@ -27,10 +27,10 @@ const LoginForm = () => {
     }
 
     try {
-      const { data } = login(
-        {variables: {...userFormData}}
+      const data = login(
+        { variables: { ...userFormData } }
       )
-      
+
       console.log(data);
     } catch (err) {
       console.error(err);
