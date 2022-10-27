@@ -14,7 +14,9 @@ const SavedBooks = () => {
   const { data } = useQuery(GET_ME);
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
+  const user = data?.user || [];
 
+  console.log( user )
 
   useEffect(() => {
     const getUserData = async () => {
@@ -25,9 +27,7 @@ const SavedBooks = () => {
         if (!token) {
           return false;
         }
-        const user = data?.user || [];
-
-        console.log( data )
+ 
         setUserData(user);
       } catch (err) {
         console.error(err);
