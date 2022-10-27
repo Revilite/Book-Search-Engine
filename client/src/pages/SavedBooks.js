@@ -16,7 +16,7 @@ const SavedBooks = () => {
   const userDataLength = Object.keys(userData).length;
   const user = data?.user || [];
 
-  console.log( user )
+ 
 
   useEffect(() => {
     const getUserData = async () => {

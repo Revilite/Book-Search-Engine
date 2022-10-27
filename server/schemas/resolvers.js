@@ -13,7 +13,7 @@ const resolvers = {
   Mutation: {
     login: async (parent, args, context) => {
       const user = await User.findOne({ email: args.email });
-
+      console.log(args);
       if (!user) {
         throw new AuthenticationError("Incorrect email or password!");
       }
@@ -30,8 +30,6 @@ const resolvers = {
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
-      console.log(token);
-      console.log(user);
       return { token, user };
     },
     saveBook: async (parent, args, context) => {
