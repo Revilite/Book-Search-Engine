@@ -5,9 +5,9 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
-      console.log(context.user + "asudhaouifjh")
+      console.log(context.user + "  asudhaouifjh")
       
-      return User.findOne({_id: context});
+      return User.findOne({_id: context.user._id});
     }
   },
   Mutation: {
@@ -42,7 +42,7 @@ const resolvers = {
         { new: true,  runValidators: true}
       );
 
-      console.log(saveBooks);
+      
 
       return { saveBooks };
     },
