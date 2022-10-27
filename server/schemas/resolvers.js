@@ -37,7 +37,7 @@ const resolvers = {
       console.log(args);
       
       const saveBooks = await User.findByIdAndUpdate(
-        args._id,
+        args.id,
         { $addToSet: { savedBooks: args } },
         { new: true,  runValidators: true}
       );
