@@ -35,7 +35,6 @@ export const SAVE_BOOK = gql`
         description
         title
         image
-
       }
     }
   }
@@ -45,7 +44,9 @@ export const REMOVE_BOOK = gql`
   mutation removeBook($bookId: String!){
     removeBook(bookId: $bookId){
     user{
-    savedBooks
+    savedBooks{
+      bookId
+    }
     }
     }
   }

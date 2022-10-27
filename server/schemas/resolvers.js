@@ -4,10 +4,10 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    me: async (parent, args, context) => {
-      console.log(context.user + "  asudhaouifjh")
+    me: async (parent, args, context) => {      
+      const user = User.findOne({_id: context.user._id});
       
-      return User.findOne({_id: context.user._id});
+      return user;
     }
   },
   Mutation: {
@@ -31,13 +31,14 @@ const resolvers = {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       console.log(token);
+      console.log(user);
       return { token, user };
     },
     saveBook: async (parent, args, context) => {
-      console.log(args);
+  
       
       const saveBooks = await User.findByIdAndUpdate(
-        args.id,
+        {_id: context.user._id},
         { $addToSet: { savedBooks: args } },
         { new: true,  runValidators: true}
       );
@@ -47,10 +48,9 @@ const resolvers = {
       return { saveBooks };
     },
     removeBook: async (parent, args, context) => {
-      console.log(args);
 
       const updatedUser = await User.findByIdAndUpdate(
-        args._id,
+        {_id: context.user._id},
         { $pull: { savedBooks: { bookId: args.bookId } } },
         { new: true }
       )
