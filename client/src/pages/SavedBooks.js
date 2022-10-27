@@ -11,24 +11,25 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
   const [userData, setUserData] = useState({});
-  const { data } = useQuery(GET_ME);
+  const  data  = useQuery(GET_ME);
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
-  const user = data?.user || [];
+  const user = data;
 
- 
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
+        console.log(user);
+        // const user = data || [];
 
-        console.log(token);
+
         if (!token) {
           return false;
         }
- 
-        setUserData(user);
+        // console.log(user);
+        // setUserData(user);
       } catch (err) {
         console.error(err);
       }

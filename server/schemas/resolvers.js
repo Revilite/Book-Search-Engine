@@ -17,12 +17,14 @@ const resolvers = {
       if (!user) {
         throw new AuthenticationError("Incorrect email or password!");
       }
+      
       const correctPassword = await user.isCorrectPassword(args.password);
 
-      if (correctPassword) {
+      
+      if (!correctPassword) {
         throw new AuthenticationError("Incorrect email or password!");
       }
-
+     
       const token = signToken(user);
       return { token, user };
     },
