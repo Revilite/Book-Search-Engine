@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/Book-Search-Engine/static/css/main.fa7988ca.chunk.css",
-    "main.js": "/Book-Search-Engine/static/js/main.d20c9b2e.chunk.js",
-    "main.js.map": "/Book-Search-Engine/static/js/main.d20c9b2e.chunk.js.map",
-    "runtime-main.js": "/Book-Search-Engine/static/js/runtime-main.242f24e2.js",
-    "runtime-main.js.map": "/Book-Search-Engine/static/js/runtime-main.242f24e2.js.map",
+    "main.js": "/Book-Search-Engine/static/js/main.6d24a3d4.chunk.js",
+    "main.js.map": "/Book-Search-Engine/static/js/main.6d24a3d4.chunk.js.map",
+    "runtime-main.js": "/Book-Search-Engine/static/js/runtime-main.d0781d94.js",
+    "runtime-main.js.map": "/Book-Search-Engine/static/js/runtime-main.d0781d94.js.map",
     "static/css/2.c4e73993.chunk.css": "/Book-Search-Engine/static/css/2.c4e73993.chunk.css",
-    "static/js/2.0b5d4c3e.chunk.js": "/Book-Search-Engine/static/js/2.0b5d4c3e.chunk.js",
-    "static/js/2.0b5d4c3e.chunk.js.map": "/Book-Search-Engine/static/js/2.0b5d4c3e.chunk.js.map",
+    "static/js/2.d2087f16.chunk.js": "/Book-Search-Engine/static/js/2.d2087f16.chunk.js",
+    "static/js/2.d2087f16.chunk.js.map": "/Book-Search-Engine/static/js/2.d2087f16.chunk.js.map",
     "index.html": "/Book-Search-Engine/index.html",
     "static/css/2.c4e73993.chunk.css.map": "/Book-Search-Engine/static/css/2.c4e73993.chunk.css.map",
     "static/css/main.fa7988ca.chunk.css.map": "/Book-Search-Engine/static/css/main.fa7988ca.chunk.css.map",
-    "static/js/2.0b5d4c3e.chunk.js.LICENSE.txt": "/Book-Search-Engine/static/js/2.0b5d4c3e.chunk.js.LICENSE.txt"
+    "static/js/2.d2087f16.chunk.js.LICENSE.txt": "/Book-Search-Engine/static/js/2.d2087f16.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.242f24e2.js",
+    "static/js/runtime-main.d0781d94.js",
     "static/css/2.c4e73993.chunk.css",
-    "static/js/2.0b5d4c3e.chunk.js",
+    "static/js/2.d2087f16.chunk.js",
     "static/css/main.fa7988ca.chunk.css",
-    "static/js/main.d20c9b2e.chunk.js"
+    "static/js/main.6d24a3d4.chunk.js"
   ]
 }
