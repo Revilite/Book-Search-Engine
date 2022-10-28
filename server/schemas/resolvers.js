@@ -46,7 +46,7 @@ const resolvers = {
     },
     removeBook: async (parent, args, context) => {
 
-      console.log(context)
+      console.log(context.user._id)
 
       const updatedUser = await User.findByIdAndUpdate(
         {_id: context.user._id},
