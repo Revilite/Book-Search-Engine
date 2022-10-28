@@ -42,12 +42,11 @@ const resolvers = {
         { $addToSet: { savedBooks: args } },
         { new: true,  runValidators: true}
       );
-
-      
-
       return { saveBooks };
     },
     removeBook: async (parent, args, context) => {
+
+      console.log(context)
 
       const updatedUser = await User.findByIdAndUpdate(
         {_id: context.user._id},

@@ -11,25 +11,22 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
   const [userData, setUserData] = useState({});
-  const  data  = useQuery(GET_ME);
+  const  { data }  = useQuery(GET_ME);
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
-  const user = data;
+  const user = data?.me || {};
 
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-        console.log(user);
-        // const user = data || [];
-
+        console.log(user)
 
         if (!token) {
           return false;
         }
-        // console.log(user);
-        // setUserData(user);
+        setUserData(user);
       } catch (err) {
         console.error(err);
       }
@@ -42,8 +39,9 @@ const SavedBooks = () => {
   const [removeBook] = useMutation(REMOVE_BOOK);
   const handleDeleteBook = async (bookId) => {
     try {
-      const data = await removeBook({
-        variable: bookId
+      console.log(bookId)
+      const { data } = await removeBook({
+        variables: bookId
       });
       console.log(data)
       setUserData({ data });
